@@ -7,7 +7,7 @@ cask "sidekit" do
   desc "Always-on-top, on-device dictation, shelf, and mirror surface"
   homepage "https://sidekit.app/"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
   depends_on arch: :arm64
 
   app "Sidekit.app"
