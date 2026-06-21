@@ -5,14 +5,15 @@ A [Homebrew](https://brew.sh) tap for **[Sidekit](https://sidekit.app)** — the
 ## Install
 
 ```sh
-brew install --cask omkareshwar-tripathi/sidekit/sidekit --no-quarantine
+brew tap omkareshwar-tripathi/sidekit
+brew trust --cask omkareshwar-tripathi/sidekit/sidekit
+brew install --cask sidekit
 ```
 
-The `--no-quarantine` flag matters: Sidekit isn't notarized by Apple yet, so without
-it macOS blocks the first launch. With the flag, it installs and opens with no warning.
-
-If you leave the flag off and macOS blocks the app, open it once via
-**System Settings → Privacy & Security → "Open Anyway"** — you only do this once.
+The `brew trust` step is required once: Homebrew asks you to explicitly trust any
+third-party cask before installing it. After that, `brew install` puts Sidekit in
+`/Applications` and it opens with no Gatekeeper warning — the cask clears the macOS
+quarantine flag for you (Sidekit isn't notarized by Apple yet).
 
 ## Requirements
 
