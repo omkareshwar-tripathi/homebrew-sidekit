@@ -13,14 +13,18 @@ cask "sidekit" do
 
   app "Sidekit.app"
 
+  # Sidekit is not notarized by Apple yet, so macOS quarantines the download and
+  # blocks the first launch. Installing via this tap is an explicit trust step
+  # (Homebrew requires `brew trust` for third-party casks), so we clear the
+  # quarantine flag here — the app then opens with no Gatekeeper warning.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Sidekit.app"]
+  end
+
   caveats <<~EOS
-    Sidekit is not notarized by Apple yet, so macOS quarantines downloads.
-
-    If you did NOT install with --no-quarantine, the first launch will be
-    blocked. To allow it, either reinstall with:
-
-      brew install --cask omkareshwar-tripathi/sidekit/sidekit --no-quarantine
-
-    or open it once via System Settings -> Privacy & Security -> "Open Anyway".
+    Sidekit is not notarized by Apple yet. This cask clears the macOS quarantine
+    flag on install, so it should open with no warning. If macOS still blocks it,
+    open it once via System Settings -> Privacy & Security -> "Open Anyway".
   EOS
 end
