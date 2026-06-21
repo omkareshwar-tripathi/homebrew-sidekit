@@ -2,7 +2,8 @@ cask "sidekit" do
   version "0.1.0"
   sha256 "9400f45186537a0003fff3d7107be35996b6ae2be0955debd0336a1390f03590"
 
-  url "https://github.com/omkareshwar-tripathi/sidekit-releases/releases/download/v#{version}/Sidekit.dmg"
+  url "https://github.com/omkareshwar-tripathi/sidekit-releases/releases/download/v#{version}/Sidekit.dmg",
+      verified: "github.com/omkareshwar-tripathi/sidekit-releases/"
   name "Sidekit"
   desc "Always-on-top, on-device dictation, shelf, and mirror surface"
   homepage "https://sidekit.app/"
